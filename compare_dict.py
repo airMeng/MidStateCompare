@@ -47,7 +47,7 @@ cpu tensor shape is {} while gpu tensor is {}'.format(key,tensor_cpu.shape,tenso
 cpu tensor shape is {} while gpu tensor is {}'.format(key,tensor_cpu.shape,tensor_gpu.shape))
             continue
         else:
-            error=torch.norm(tensor_cpu-tensor_gpu)
+            error=torch.norm(tensor_cpu-tensor_gpu.cpu())
             if error>=error_threshold:
                 logging.error('state tensor error for {} between cpu and gpu is larger than threshold'.format(key))
                 err_msg.append('state tensor error for {} between cpu and gpu is larger than threshold'.format(key))

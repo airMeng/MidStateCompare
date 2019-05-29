@@ -23,11 +23,11 @@ def save_state(model,epoch,iter):
     compare_keys=online_args['keys']
     save_path=online_args['save_path']
     refer_gpu_path=args['refer_gpu_path']
-    #refer_gpu_dict=torch.load(os.path.join(refer_gpu_path,str(epoch),str(iter),'state_dict.checkpoint'))
+    refer_gpu_dict=torch.load(os.path.join(refer_gpu_path,str(epoch),str(iter),'gpu.checkpoint'))
     path=os.path.join(save_path,str(epoch),str(iter))
     if not os.path.exists(path):
         os.makedirs(path)
-    """
+
     if epoch==compare_epoch or compare_epoch=='all':
         if iter==compare_iter or compare_iter=='all':
             compare_result=compare_state(model.state_dict(),refer_gpu_dict,dic_keys=compare_keys)
@@ -35,7 +35,7 @@ def save_state(model,epoch,iter):
                 logging.info('epoch = {} iter = {} state_dict error is acceptable'.format(epoch, iter))
             else:
                 logging.warning('epoch = {} iter = {} state_dict error is unacceptable'.format(epoch, iter))
-    """
-    if online_args['save_all_dict']:
-        file_name=os.path.join(path,'cpu.checkpoint')
-        torch.save(model.state_dict(), file_name)
+
+            if online_args['save_all_dict']:
+                file_name=os.path.join(path,'cpu.checkpoint')
+                torch.save(model.state_dict(), file_name)
