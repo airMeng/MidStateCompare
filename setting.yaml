@@ -1,0 +1,14 @@
+refer_gpu_path: './'
+with_mkldnn: false
+online_comparison:
+  epoch: 0
+  iteration: 0
+  keys: m1.linear
+  save_all_dict: true
+  save_path: './cpu/'
+
+offline_comparison:
+  cpu_path: ''
+  epoch: 0
+  iteration: 0
+  keys: 0
