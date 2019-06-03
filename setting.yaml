@@ -1,8 +1,8 @@
 refer_gpu_path: './gpu'
 with_mkldnn: false
 online_comparison:
-  epoch: 0
-  iteration: 0
+  epoch: all
+  iteration: all
   keys: all
   save_all_dict: true
   save_path: './cpu'

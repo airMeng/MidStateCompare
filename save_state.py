@@ -23,13 +23,14 @@ def save_state(model,epoch,iter):
     compare_keys=online_args['keys']
     save_path=online_args['save_path']
     refer_gpu_path=args['refer_gpu_path']
-    refer_gpu_dict=torch.load(os.path.join(refer_gpu_path,str(epoch),str(iter),'gpu.checkpoint'))
+    refer_gpu_dict=torch.load(os.path.join(refer_gpu_path,str(epoch),str(iter),'cpu.checkpoint'))
     path=os.path.join(save_path,str(epoch),str(iter))
     if not os.path.exists(path):
         os.makedirs(path)
 
     if epoch==compare_epoch or compare_epoch=='all':
         if iter==compare_iter or compare_iter=='all':
+
             compare_result=compare_state(model.state_dict(),refer_gpu_dict,dic_keys=compare_keys)
             if compare_result:
                 logging.info('epoch = {} iter = {} state_dict error is acceptable'.format(epoch, iter))
