@@ -5,7 +5,7 @@ import torch.backends.cudnn as cudnn
 from torch.utils.data import DataLoader, Dataset
 from compare_dict import compare_state
 from torch.autograd import Variable
-from save_state import save_state
+from compare_wrapper import compare_state
 
 class TwoLayerNet(torch.nn.Module):
     def __init__(self, D_in, H, D_out):
