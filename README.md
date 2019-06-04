@@ -15,19 +15,21 @@ save_path: 'cpu'                 # path to save cpu state dict
 
 First time to use it, save gpu state dict as reference. remember to set **save_gpu_refer: true**
 ```python
+from compare_wrapper import compare_state
 model.cuda()
 y,x=y.cuda(),x.cuda()
 ...
 # if epoch can't be passed, the epoch default is 0, which means we only compare epoch 0.
-with save_state(model,iter,epoch=):
+with compare_state(model,iter,epoch=):
   y=model(x)
 ```
 
 to compare cpu state.set **save_gpu_refer: false**
 ```python
+from compare_wrapper import compare_state
 model.cpu()
 y,x=y.cpu(),x.cpu()
-with save_state(model,iter,epoch=):
+with compare_state(model,iter,epoch=):
   y=model(x)
 ```
 remember cpu() and cuda() switch.
