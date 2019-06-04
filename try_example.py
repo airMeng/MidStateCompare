@@ -103,8 +103,7 @@ def init_weights(m):
 # Construct our model by instantiating the class defined above
 model = Net(DynamicNet(D_in,H,D_in), TwoLayerNet(D_in,H,D_out))
 
-# Construct our loss function and an Optimizer. Training this strange model with
-# vanilla stochastic gradient descent is tough, so we use momentum
+
 model.train()
 criterion = torch.nn.MSELoss(reduction='sum')
 optimizer = torch.optim.SGD(model.parameters(), lr=1e-4, momentum=0.9)
@@ -113,20 +112,17 @@ for t in range(5):
     # torch.manual_seed(seed + t)
     for iter,batch in enumerate(loader):
         x,y=batch
-        if t==0 and iter<=3:
-            model.load_state_dict(torch.load('gpu/0/3/cpu.checkpoint'))
-        else:
-            with save_state(model,t,iter):
-                y_pred = model(x)
-            # Compute and print loss
-            loss = criterion(y_pred, y)
-            # state1=model.state_dict()
-            optimizer.zero_grad()
+        with save_state(model=model,epoch=t,iter=iter):
+            y_pred = model(x)
+        # Compute and print loss
+        loss = criterion(y_pred, y)
+        # state1=model.state_dict()
+        optimizer.zero_grad()
 
-            # state2 = model.state_dict()
-            loss.backward()
-            # state3 = model.state_dict()
-            optimizer.step()
-            # state4 = model.state_dict()
+        # state2 = model.state_dict()
+        loss.backward()
+        # state3 = model.state_dict()
+        optimizer.step()
+        # state4 = model.state_dict()
 
 

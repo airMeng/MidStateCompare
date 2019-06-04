@@ -1,14 +1,9 @@
-refer_gpu_path: './gpu'
+model_name: resnext101
+refer_gpu_path: 'gpu'
 with_mkldnn: false
-online_comparison:
-  epoch: all
-  iteration: all
-  keys: all
-  save_all_dict: true
-  save_path: './cpu'
-
-offline_comparison:
-  cpu_path: ''
-  epoch: 0
-  iteration: 0
-  keys: 0
+save_gpu_refer: false
+epoch: all
+iteration: all
+keys: all
+save_all_dict: true
+save_path: 'cpu'
