@@ -18,7 +18,7 @@ def args_parser(path):
 def save_state(model,iter,**kwargs):
     args = args_parser('setting.yaml')
     save_gpu_refer=args['save_gpu_refer']
-    if kwargs['epoch'] is None:
+    if 'epoch' not in kwargs.keys():
         epoch=0
     else:
         epoch=kwargs['epoch']

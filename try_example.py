@@ -102,8 +102,7 @@ def init_weights(m):
 
 # Construct our model by instantiating the class defined above
 model = Net(DynamicNet(D_in,H,D_in), TwoLayerNet(D_in,H,D_out))
-
-
+# model=model.cuda()
 model.train()
 criterion = torch.nn.MSELoss(reduction='sum')
 optimizer = torch.optim.SGD(model.parameters(), lr=1e-4, momentum=0.9)
@@ -112,6 +111,8 @@ for t in range(5):
     # torch.manual_seed(seed + t)
     for iter,batch in enumerate(loader):
         x,y=batch
+  #      x=x.cuda()
+   #     y=y.cuda()
         with save_state(model=model,epoch=t,iter=iter):
             y_pred = model(x)
         # Compute and print loss

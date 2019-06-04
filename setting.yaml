@@ -1,4 +1,4 @@
-model_name: resnext101
+model_name: resnext101_32x8d
 refer_gpu_path: 'gpu'
 with_mkldnn: false
 save_gpu_refer: false
