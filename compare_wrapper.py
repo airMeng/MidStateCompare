@@ -15,7 +15,7 @@ def args_parser(path):
 
 
 @contextlib.contextmanager
-def save_state(model,iter,**kwargs):
+def compare_state(model,iter,**kwargs):
     args = args_parser('setting.yaml')
     save_gpu_refer=args['save_gpu_refer']
     if 'epoch' not in kwargs.keys():
