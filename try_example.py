@@ -113,7 +113,7 @@ for t in range(5):
         x,y=batch
   #      x=x.cuda()
    #     y=y.cuda()
-        with save_state(model=model,epoch=t,iter=iter):
+        with compare_state(model=model,epoch=t,iter=iter):
             y_pred = model(x)
         # Compute and print loss
         loss = criterion(y_pred, y)
